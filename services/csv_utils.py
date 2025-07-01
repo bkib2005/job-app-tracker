@@ -14,10 +14,10 @@ This function loads application data from a given CSV file and returns a list of
         with open(file_name, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                company = Company(row['Company Name'], row['Company Phone'], row['Company Email'])
-                position = Position(row['Position Title'], float(row['Position Wage']), row['Position Type'], company)
-                date_applied = datetime.datetime.strptime(row['Date Applied'], '%Y-%m-%d').date()
-                application = Application(position, row['Application Status'], row['Application Website'], date_applied)
+                company = Company(row['company'], row['phone_number'], row['email_address'])
+                position = Position(row['position'], float(row['wage']), row['type'], company)
+                date_applied = datetime.datetime.strptime(row['date_applied'], '%Y-%m-%d').date()
+                application = Application(position, row['status'], row['application_link'], date_applied)
                 applications.append(application)
         return applications
     except Exception as e:
